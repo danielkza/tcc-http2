@@ -1,0 +1,376 @@
+%% abntex2.latex, v<VERSION> dudektria
+%% Copyright 2012-2015 by abnTeX2 group at http://abntex2.googlecode.com/ 
+%%
+%% This work may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%   http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 2005/12/01 or later.
+%%
+%% This work has the LPPL maintenance status `maintained'.
+%% 
+%% The Current Maintainer of this work is Felipe Schneider.
+%% Further information are available on http://abntex2.googlecode.com/
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% USO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Este é um template para o pandoc compatível com abntex2
+%
+% É necessário chamar pandoc com pelo menos -V documentclass=abntex2 e
+% --template=/caminho/absoluto/para/abntex2.latex
+%
+% Desta maneira, classes baseadas na abntex2 ainda podem ser usadas. O caminho
+% absoluto é devido ao fato de o pandoc ter problemas com caminhos relativos.
+%
+% Todos os exemplos foram compilados com as seguintes opções (exceto quando
+% eles mesmos dizem o contrário):
+%
+%   pandoc -V documentclass=abntex2 \
+%          --template=/caminho/absoluto/para/abntex2.latex \
+%          -SRs --normalize --filter=pandoc-citeproc \
+%          -V lang=english,french,spanish,german,brazil -V papersize=a4paper \
+%          -V fontsize=12pt -V classoption=twoside -V classoption=openright \
+%          -V linkcolor=blue caminho/do/arquivo.md -o caminho/do/arquivo.pdf
+%
+% Os com _art.pdf no final receberam também -V classoption=article
+% Trocando a extensão do arquivo final de .pdf para .latex gera-se o código
+% fonte, para processamento adicional posterior
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% METADATA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% As seguintes metadatas relacionadas ao abntex2 estão disponíveis no template:
+% - title:			título do trabalho (caso não haja capa será chamado
+%					\maketitle)
+% - date:			data
+% - author:			autor(es) do trabalho
+% - place:			local
+% - institution:	instituição
+% - preamble:		ver documentação do abntex2 (\preambulo{})
+% - abstract:		texto do resumo
+% - tags:			lista de palavras-chave (aparece se abstract for definido)
+% - tagstitle:		nome para substituir "Palavras-chave" no texto
+% - capa:			se true chama \imprimircapa
+% - folhaderosto:	se true chama \imprimirfolhaderosto
+% - tipotrabalho:	ver documentação do abntex2
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CITAÇÕES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% São feitas pelo pandoc-citeproc (chame pandoc --filter=pandoc-citeproc).
+% Isto quer dizer que você precisa chamar
+%
+%   \postextual
+%   # Referências
+%
+% ou algo semelhante no final do seu markdown. Para citar use as metadatas
+% bibliography e csl como descrito na documentação do pandoc.
+%
+\documentclass[12pt,a4paper,openright,twoside,]{abntex2}	% Opções da classe do documento:
+			% 	fontsize,lang,papersize,classoption
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}	% Latin Modern
+\usepackage{amssymb,amsmath}	% Símbolos matemáticos (Pandoc)
+\usepackage{ifxetex,ifluatex}	% Testes de processadores (Pandoc)
+\usepackage{fixltx2e} % provides \textsubscript
+\usepackage{indentfirst}	% Indenta o primeiro parágrafo
+\usepackage{color}	% Controle de cores
+\usepackage{relsize}
+
+\definecolor{blue}{RGB}{41,5,195}	% Altera o aspecto do azul
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[utf8]{inputenc}	% Adição de inputenc
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+    \usepackage{xltxtra,xunicode}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
+  \newcommand{\euro}{€}
+\fi
+% use microtype if available
+\IfFileExists{microtype.sty}{\usepackage{microtype}}{}
+\hypersetup{breaklinks=true,
+            bookmarks=true,
+            pdfauthor={Daniel Q. Miranda},
+            pdftitle={Relatório Parcial - Implementação do Protocol HTTP2 na linguagem Scala},
+            colorlinks=true,
+            citecolor=blue,
+            urlcolor=blue,
+            linkcolor=blue,
+            pdfborder={0 0 0}}
+\urlstyle{same}  % don't use monospace font for urls
+\setlength{\parindent}{1.3cm}	% Tamanho dos parágrafos
+\setlength{\parskip}{0.2cm}	% Espaçamento entre parágrafos
+\setcounter{secnumdepth}{0}
+
+\titulo{Relatório Parcial - Implementação do Protocol HTTP2 na linguagem Scala}	% Adicionando o título
+\autor{Daniel Q. Miranda}	% Adicionando autor(es)
+\orientador{Prof.~Dr.~Daniel Macêdo Batista}  % Adicionando orientadores(es)
+\data{}	% Adicionando a data
+
+\begin{document}
+\maketitle	% Imprimindo um título, caso não seja usada a capa
+
+
+
+{
+\hypersetup{linkcolor=black}
+\setcounter{tocdepth}{3}
+\noindent\tableofcontents* % Adicionando sumário
+\cleardoublepage
+}
+
+\textual	% Início do texto convertido do arquivo original
+\section{Proposta}\label{proposta}
+
+Me proponho a implementar uma biblioteca e/ou servidor HTTP/2 na
+linguagem Scala. Preferencialmente buscarei trabalhar para que ela seja
+integrada ao projeto \href{http://akka.io}{Akka}, muito popular
+framework de concorrência e computação distribuída na JVM, que
+recentemente iniciou um projeto de implementação de HTTP combinando
+esforços de diversos outros projetos e frameworks de aplicações Web.
+Caso isso não seja possível, a desenvolverei de maneira independente.
+
+\section{Cronograma previsto
+inicialmente}\label{cronograma-previsto-inicialmente}
+
+\begin{itemize}
+\tightlist
+\item
+  Mar-Abr: Estudo preliminar, estudo do projeto Akka e conversa com
+  desenvolvedores para verificar viabilidade de integração
+\item
+  Abr-Maio: Design inicial de arquitetura, planejamento, estudo do
+  protocolo
+\item
+  Maio-Jul: Design de APIs, detalhamento da arquitetura, prototipação
+  inicial
+\item
+  Jul-Out: Implementação de biblioteca já funcional, incluindo maior
+  partes das features possível:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Múltiplos streams (multiplexing)\\
+  \item
+    Compressão de Headers\\
+  \item
+    \emph{Server Push}\\
+  \item
+    HTTP2c (TLS)\\
+  \end{itemize}
+\item
+  Out-Nov: Otimizações de performances, testes e comparações com outras
+  implementações, elaboração de estudos de arquitetura,
+\end{itemize}
+
+\section{Progresso atual}\label{progresso-atual}
+
+Até o presente momento a maior parte do progresso constituiu em
+compreender e avaliar:
+
+\begin{itemize}
+\tightlist
+\item
+  O protocolo HTTP/2\\
+\item
+  Implementações existentes do HTTP/2 em diversas linguagens\\
+\item
+  Implementações de outros servidores HTTP em Java\\
+\item
+  O ecossistema Scala e aplicação possível do resultado pela comunidade
+\end{itemize}
+
+\section{Plataforma Akka}\label{plataforma-akka}
+
+O plano inicial era trabalhar dentro da plataforma Akka, já muito
+adotada para concorrência em Java e Scala, e que parece estar, com
+sucesso, iniciando um processo de unificação de bibliotecas de
+comunicação na JVM.
+
+O contato inicial do projeto foi recebido até com interesse, mas os
+desenvolvedores manifestaram falta de recursos e/ou tempo para *** a
+iniciativa. O Akka, assim como diversos outros grandes projetos em
+Scala, vem sendo financiado pela empresa
+\href{http://typesafe.com}{Typesafe}, e a maioria dos contribuidores de
+grande-escala são seus empregados, com objetivos e planos pré-existentes
+e nem sempre flexíveis.
+
+Decidi então trabalhar por contra própria, tomando a biblioteca HTTP do
+Akka apenas como inspiração. Porém, ainda cogito utilizar a biblioteca
+homônima ao projeto, que lida principalmente com concorrência através do
+modelo de atores (mais sobre isso segue nas próximas seções), entrada e
+saída a nível de arquivos e sockets, dentre outros.
+
+\section{O protocolo HTTP/2}\label{o-protocolo-http2}
+
+A nova versão do protocolo HTTP
+(\href{(https://tools.ietf.org/html/rfc7540}{HTTP/2}) adiciona um certo
+nível de complexidade ao original para alcançar diversos objetivos,
+visando modernizar o protocolo para que ele continue eficiente nas
+décadas que seguirão.
+
+Alguns exemplos destes objetivos, com seus correspondentes mecanismos,
+são:
+
+\subsubsection{Utilizar eficientemente um número pequeno (menor
+possível) de
+conexões}\label{utilizar-eficientemente-um-nuxfamero-pequeno-menor-possuxedvel-de-conexuxf5es}
+
+O protocolo HTTP/2 permite a existência de múltiplos \emph{streams} de
+dados, tanto cliente-servidor como na direção oposta, para aproveitar ao
+máximo uma única conexão TCP. Isso permite que, por exemplo, diversos
+recursos sejam carregadas simultaneamente, que ações de um usuário em um
+aplicativo Web sejam enviadas sem espera, ou que um modo de uso com
+troca de informações contínua seja possível (que hoje, por exemplo, é
+comummente implementado em browsers por um segundo protocolo, o
+\href{https://www.websocket.org/}{WebSocket}).
+
+\subsubsection{Diminuir o uso de banda em
+geral}\label{diminuir-o-uso-de-banda-em-geral}
+
+Mecanismos de compressão são suportados universalmente pelo HTTP/1 há
+mais de uma década, mas em múltiplos casos fraquezas de segurança (CRIME
+(Kelsey 2002), BREACH (Prado, Harris, and Gluck 2013)) foram descobertas
+durante seu uso, causadas pelo gradual ``vazamento'' de informações
+sobre padrões dos dados ou meta-dados transmitidos. O HTTP/2 visa
+melhorar significativamente esta situação introduzindo um mecanismo
+próprio de compressão de headers, eficiente e resistente a esses
+vazamentos, chamado
+\href{https://http2.github.io/http2-spec/compression.html}{HPACK}.
+
+\subsubsection{Melhorar eficiência de aplicações que usam o HTTP, como a
+Web}\label{melhorar-eficiuxeancia-de-aplicauxe7uxf5es-que-usam-o-http-como-a-web}
+
+O mecanismo de ``Server Push'', onde um servidor pode preventivamente
+recomendar que um cliente faça uma requisição pode acelerar
+significativamente a visualização de páginas Web em geral. Também tem
+potencial benefício para o uso do HTTP como API (através de padrões como
+REST e SOAP), permitindo o paginamento de recursos de maneira limpa e
+eficiente.
+
+\subsubsection{\texorpdfstring{Manter compatibilidade ``bidirecional''
+entre HTTP/1 e
+HTTP/2}{Manter compatibilidade bidirecional entre HTTP/1 e HTTP/2}}\label{manter-compatibilidade-bidirecional-entre-http1-e-http2}
+
+Múltiplos mecanismos de negociação foram especificados, para permitir
+que:
+
+\begin{itemize}
+\tightlist
+\item
+  Clientes pré-existentes se mantenham funcionando sem perda de
+  funcionalidade
+\item
+  Clientes novos possam se conectar de maneira genérica a um servidor, e
+  utilizar o HTTP/2 se possível
+\item
+  Seja possível identificar se um servidor é compatível com HTTP/2 sem
+  overhead.
+\end{itemize}
+
+Os principais escolhidos e especificados no protocolo são:
+
+\begin{itemize}
+\tightlist
+\item
+  Negociação de upgrade: uma conexão HTTP/1 é iniciada, com um conjunto
+  de headers informando a compatibilidade com HTTP/2. Isso permite
+  conexão universal, aceita tanto por HTTP/1 e HTTP/2
+\item
+  Negociação de protocolo de aplicação através do TLS, quando em uso: o
+  protocolo Transport Layer Security tem um mecanismo interno de
+  negociação, que pode ser usado para selecionar HTTP/2 caso possível
+\item
+  Conexão direta através da versão 2, que tem um preâmbulo de conexão
+  próprio, facilmente distinguível do HTTP/1
+\end{itemize}
+
+\section{Implementações existentes do HTTP/2 e outros servidores em
+Java}\label{implementauxe7uxf5es-existentes-do-http2-e-outros-servidores-em-java}
+
+As principais implementações no ecossistema Java vem de dois projetos já
+muito estabelecidos: \href{http://eclipse.org/jetty}{Jetty} (do projeto
+Eclipse) e \href{http://netty.io}{Netty}. Ambas tem alto foco em
+performance e qualidade em geral, e tem grandes gamas de contribuidores
+e suporte.
+
+Após o início do projeto, descobri a existência do projeto
+\href{https://github.com/http4s/blaze}{http4s-blaze} em Scala, com
+objetivos similares aos meus, que implementa um servidor HTTP/2 já na
+linguagem Scala. Teria sido interessante saber de sua existência de
+antemão, mas não vejo um problema: o objetivo principal do trabalho é o
+aprendizado e a experiência. Minha implementação pode seguir escolhas
+diferentes de arquitetura, prioridades, etc.
+
+\section{Decisões de design e escolhas
+tomadas}\label{decisuxf5es-de-design-e-escolhas-tomadas}
+
+Embora infelizmente ainda tenha produzido pouco código, não suficiente
+para um protótipo, já tenho decididas diversas escolhas de modo de
+trabalho, arquitetura, objetivos, etc.
+
+\begin{itemize}
+\tightlist
+\item
+  Sistema de build: \href{http://scala-sbt.org/}{SBT}
+\item
+  Biblioteca de I/O:
+  \href{http://doc.akka.io/docs/akka/current/scala/io.html}{Akka I/O}
+\item
+  Buscar ao máximo implementar, sempre que possível, todo o servidor
+  utilizando estruturas de dados imutáveis, programação funcional e
+  composição de componentes independentes. Este paradigma é fortemente
+  suportado pela linguagem Scala, assim como a biblioteca Akka I/O, e
+  não necessariamente incorre em perda de eficiência com o devido
+  cuidado.
+\item
+  Focar em simplicidade e elegância arquitetural e correção em vez de
+  performance. Devido ao tempo de trabalho e recursos, é incrivelmente
+  difícil competir com projetos com vários contribuidores, empresas em
+  seu suporte, poder computacional, etc. no quesito performance
+\item
+  Utilizar um design baseado em ``pipeline'', com os diversos estágios
+  de um request sendo tratados independentemente por componentes
+  distintos
+\end{itemize}
+
+\subsection{Cronograma}\label{cronograma}
+
+O plano do cronograma inicial segue mantido: o trabalho até
+outubro/novembro consistirá em implementar o máximo possível do
+protocolo em um servidor simples, mas funcional. Para alcançar esse
+objetivo, serão necessárias algumas adaptações, como:
+
+\begin{itemize}
+\tightlist
+\item
+  Se limitar a um ou o menor número possível de métodos de negociação\\
+\item
+  Focar inicialmente na comunicação básica, codificação, decodificação e
+  tratamento de headers, assim como funcionamento com streams únicos
+  (mas bidirecionais)
+\item
+  Focar inicialmente na implementação sem TLS (em \emph{plain-text})
+\end{itemize}
+
+\hyperdef{}{references}{\label{references}}
+\hyperdef{}{ref-raey}{\label{ref-raey}}
+Kelsey, John. 2002. ``Compression and Information Leakage of
+Plaintext.'' In \emph{Fast Software Encryption}, edited by Joan Daemen
+and Vincent Rijmen, 2365:263--76. Lecture Notes in Computer Science.
+Springer Berlin Heidelberg.
+doi:\url{http://doi.org/10.1007/3-540-45661-9_21}.
+
+\hyperdef{}{ref-pradossl}{\label{ref-pradossl}}
+Prado, Angelo, Neal Harris, and Yoel Gluck. 2013. ``SSL, Gone in 30
+Seconds.'' In \emph{Black Hat USA}.
+\url{http://breachattack.com/resources/BREACH\%20-\%20BH\%202013\%20-\%20PRESENTATION.pdf}.	% No próprio texto é necessário invocar \postextual
+
+\end{document}
