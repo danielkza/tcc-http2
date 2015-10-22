@@ -18,8 +18,8 @@ abstract: |
     Abstract line 2  
 tags: ugly, boring, fool
 
-capa: true
-folhaderosto: true
+capa: false
+folhaderosto: false
 navbar:
   monografia: true
 ---
