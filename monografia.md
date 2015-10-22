@@ -8,16 +8,6 @@ institution: Instituto de Matemática e Estatística - Universidade de Sâo Paul
 
 lang: english,brazil
 
-resumo: |
-    Resumo linha 1  
-    Resumo linha 2  
-palavraschave: feio, chato, bobo
-
-abstract: |
-    Abstract line 1  
-    Abstract line 2  
-tags: ugly, boring, fool
-
 capa: false
 folhaderosto: false
 navbar:
