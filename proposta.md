@@ -1,8 +1,12 @@
-# Proposta de Trabalho - Implementação do Protocol HTTP2 na linguagem Scala
-- - -
-## Aluno: Daniel Q. Miranda - NUSP 7577406
-## Orientador: Prof. Dr. Daniel Batista
-- - -
+---
+title: Proposta de Trabalho - Implementação do Protocol HTTP2 na linguagem Scala
+author: Daniel Q. Miranda
+orientador: Prof. Dr. Daniel Macêdo Batista
+
+navbar:
+  proposta: true
+...
+
 # Contexto
 
 O recém finalizado protocolo <a href="http://http2.github.io/">HTTP/2</a> foi criado para suceder o mais importante e
