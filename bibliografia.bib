@@ -1,65 +1,120 @@
-% This file was created with JabRef 2.9.2.
+% This file was created with JabRef 2.10.
 % Encoding: UTF8
 
-@INPROCEEDINGS{pradossl,
-  author = {Prado, Angelo and Harris, Neal and Gluck, Yoel},
-  title = {{SSL}, Gone in 30 Seconds},
-  year = {2013},
-  crossref = {black-hat-usa-2013},
-  language = {English},
-  url = {http://breachattack.com/resources/BREACH%20-%20BH%202013%20-%20PRESENTATION.pdf}
+
+@Inproceedings{pradossl,
+  Title                    = {{SSL}, Gone in 30 Seconds},
+  Author                   = {Prado, Angelo and Harris, Neal and Gluck, Yoel},
+  Year                     = {2013},
+  Language                 = {English},
+  Url                      = {http://breachattack.com/resources/BREACH%20-%20BH%202013%20-%20PRESENTATION.pdf},
+
+  Crossref                 = {black-hat-usa-2013}
 }
 
-@ARTICLE{actor-hewitt,
-  author = {Carl Hewitt},
-  title = {Viewing control structures as patterns of passing messages},
-  journal = {Artificial Intelligence},
-  year = {1977},
-  volume = {8},
-  pages = {323 - 364},
-  number = {3},
-  doi = {http://dx.doi.org/10.1016/0004-3702(77)90033-9},
-  issn = {0004-3702},
-  owner = {danielkza},
-  timestamp = {2015.10.18},
-  url = {http://www.sciencedirect.com/science/article/pii/0004370277900339}
+@Techreport{RFC7540,
+  Title                    = {Hypertext Transfer Protocol Version 2 (HTTP/2)},
+  Author                   = {M. Belshe and R. Peon and M. Thomson},
+  Institution              = {RFC Editor},
+  Year                     = {2015},
+  Month                    = {May},
+  Note                     = {\url{http://www.rfc-editor.org/rfc/rfc7540.txt}},
+  Number                   = {7540},
+  Type                     = {RFC},
+  Url                      = {http://www.rfc-editor.org/rfc/rfc7540.txt},
+
+  HowPublished             = {Internet Requests for Comments},
+  ISSN                     = {2070-1721},
+  Publisher                = {RFC Editor}
 }
 
-@ARTICLE{huffman,
-  author = {Huffman, D.A.},
-  title = {A Method for the Construction of Minimum-Redundancy Codes},
-  journal = {Proceedings of the IRE},
-  year = {1952},
-  volume = {40},
-  pages = {1098-1101},
-  number = {9},
-  month = {Sept},
-  doi = {10.1109/JRPROC.1952.273898},
-  issn = {0096-8390},
-  keywords = {Transmitters},
-  language = {English}
+@Techreport{w3c-webapp,
+  Title                    = {Mobile Web Application Best Practices},
+  Author                   = {Adam Connors and Bryan Sullivan},
+  Institution              = {W3C},
+  Year                     = {2010},
+  Month                    = dec,
+  Note                     = {http://www.w3.org/TR/2010/REC-mwabp-20101214/},
+
+  Bibsource                = {http://w2.syronex.com/jmr/w3c-biblio}
 }
 
-@INCOLLECTION{raey,
-  author = {Kelsey, John},
-  title = {Compression and Information Leakage of Plaintext},
-  booktitle = {Fast Software Encryption},
-  publisher = {Springer Berlin Heidelberg},
-  year = {2002},
-  editor = {Daemen, Joan and Rijmen, Vincent},
-  volume = {2365},
-  series = {Lecture Notes in Computer Science},
-  pages = {263-276},
-  doi = {10.1007/3-540-45661-9_21},
-  isbn = {978-3-540-44009-3},
-  language = {English},
-  url = {http://dx.doi.org/10.1007/3-540-45661-9_21}
+@Article{actor-hewitt,
+  Title                    = {Viewing control structures as patterns of passing messages},
+  Author                   = {Carl Hewitt},
+  Year                     = {1977},
+  Doi                      = {http://dx.doi.org/10.1016/0004-3702(77)90033-9},
+  ISSN                     = {0004-3702},
+  Number                   = {3},
+  Pages                    = {323 - 364},
+  Url                      = {http://www.sciencedirect.com/science/article/pii/0004370277900339},
+  Volume                   = {8},
+
+  Journal                  = {Artificial Intelligence},
+  Owner                    = {danielkza},
+  Timestamp                = {2015.10.18}
 }
 
-@PROCEEDINGS{black-hat-usa-2013,
-  title = {Black Hat {USA}},
-  year = {2013},
-  owner = {danielkza},
-  timestamp = {2015.10.20}
+@Article{huffman,
+  Title                    = {A Method for the Construction of Minimum-Redundancy Codes},
+  Author                   = {Huffman, D.A.},
+  Year                     = {1952},
+  Doi                      = {10.1109/JRPROC.1952.273898},
+  ISSN                     = {0096-8390},
+  Language                 = {English},
+  Month                    = {Sept},
+  Number                   = {9},
+  Pages                    = {1098-1101},
+  Volume                   = {40},
+
+  Journal                  = {Proceedings of the IRE},
+  Keywords                 = {Transmitters}
+}
+
+@Incollection{raey,
+  Title                    = {Compression and Information Leakage of Plaintext},
+  Author                   = {Kelsey, John},
+  Booktitle                = {Fast Software Encryption},
+  Editor                   = {Daemen, Joan and Rijmen, Vincent},
+  Year                     = {2002},
+  Doi                      = {10.1007/3-540-45661-9_21},
+  ISBN                     = {978-3-540-44009-3},
+  Language                 = {English},
+  Pages                    = {263-276},
+  Publisher                = {Springer Berlin Heidelberg},
+  Series                   = {Lecture Notes in Computer Science},
+  Url                      = {http://dx.doi.org/10.1007/3-540-45661-9_21},
+  Volume                   = {2365}
+}
+
+@Online{http2-implementations,
+  Title                    = {Implementations - http2/http2-spec Wiki},
+  Author                   = {Mark Nottingham},
+  Url                      = {https://github.com/http2/http2-spec/wiki/Implementations},
+  Year                     = {2015},
+  Organization             = {IETF HTTPbis Working Group},
+  Urldate                  = {2015.11.04},
+
+  Owner                    = {danielkza},
+  Timestamp                = {2015.11.04}
+}
+
+@Online{http2-faq,
+  Title                    = {HTTP/2 Frequently Asked Questions},
+  Url                      = {https://http2.github.io/faq/},
+  Year                     = {2015},
+  Organization             = {IETF HTTP Working Group},
+  Urldate                  = {2015.11.04},
+
+  Owner                    = {danielkza},
+  Timestamp                = {2015.11.04}
+}
+
+@Proceedings{black-hat-usa-2013,
+  Title                    = {Black Hat {USA}},
+  Year                     = {2013},
+
+  Owner                    = {danielkza},
+  Timestamp                = {2015.10.20}
 }
 
